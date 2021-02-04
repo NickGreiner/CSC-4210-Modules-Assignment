@@ -1,4 +1,4 @@
-/* Authors: Nick Greiner, Matt Ray,
+/* Authors: Nick Greiner, Matt Ray, James Botsko
  *
  * Description: Adds an entry to /proc allowing user to print curent value of jiffies. Use by running "cat /proc/jiffies"
  *

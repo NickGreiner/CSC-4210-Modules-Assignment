@@ -1,4 +1,4 @@
-/* Authors: Nick Greiner, Matt Ray,
+/* Authors: Nick Greiner, Matt Ray, James Botsko
  *
  * Description: Adds an entry to /proc allowing the user to print current value of seconds since module was loaded. Use by running "cat /proc/seconds"
  *
