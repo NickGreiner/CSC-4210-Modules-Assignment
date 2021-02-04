@@ -1,10 +1,12 @@
-/* Authors: Nick Greiner, Matt Ray, 
+/* Authors: Nick Greiner, Matt Ray,
  *
- * Description: Adds an entry to /proc allowing the user to print current value of seconds since module was loaded. Use by running "cat /proc/seconds" 
+ * Description: Adds an entry to /proc allowing the user to print current value of seconds since module was loaded. Use by running "cat /proc/seconds"
  *
  * Compiling: Run the "make" command in the directory where your Makefile and seconds.c are located
  * Installing: From the directory where you ran "make", run "insmod seconds.ko". Make sure the module is loaded using "cat /proc/modules | grep 'seconds'"
  * Removing: From the directory where you ran "make", run "rmmod seconds.ko". Make sure the module is un-loaded using "cat /proc/modules | grep 'seconds'"
+ *
+ * https://github.com/NickGreiner/CSC-4210-Modules-Assignment
  */
 
 
@@ -20,7 +22,7 @@
 
 ssize_t seq_read(struct file *file, char __user *usr_buf, size_t count, loff_t *pos);
 
-unsigned long jiffies_start; 
+unsigned long jiffies_start;
 
 static struct proc_ops my_fops={
     .proc_read = seq_read,
@@ -56,7 +58,7 @@ ssize_t seq_read(struct file *file, char __user *usr_buf, size_t count, loff_t *
 	}
 	completed = 1;
 	rv = sprintf(buffer, "%lu\n", (jiffies - jiffies_start) / HZ);
-	
+
 	/* copies kernel space buffer to user space usr_buf */
 	raw_copy_to_user(usr_buf, buffer, rv);
 	return rv;

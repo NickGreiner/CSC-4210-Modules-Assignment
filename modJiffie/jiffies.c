@@ -1,10 +1,12 @@
-/* Authors: Nick Greiner, Matt Ray, 
+/* Authors: Nick Greiner, Matt Ray,
  *
  * Description: Adds an entry to /proc allowing user to print curent value of jiffies. Use by running "cat /proc/jiffies"
  *
  * Compiling: Run the "make" command in the directory where your Makefile and jiffies.c are located
  * Installing: From the directory where you ran "make", run "insmod jiffies.ko". Make sure the module is loaded using "cat /proc/modules | grep 'jiffies'"
  * Removing: From the directory where you ran "make", run "rmmod jiffies.ko". Make sure the module is un-loaded using "cat /proc/modules | grep 'jiffies'"
+ *
+ * https://github.com/NickGreiner/CSC-4210-Modules-Assignment
  */
 
 
@@ -51,7 +53,7 @@ ssize_t seq_read(struct file *file, char __user *usr_buf, size_t count, loff_t *
 	}
 	completed = 1;
 	rv = sprintf(buffer, "%lu\n", jiffies);
-	
+
 	/* copies kernel space buffer to user space usr_buf */
 	raw_copy_to_user(usr_buf, buffer, rv);
 	return rv;
